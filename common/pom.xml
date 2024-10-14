@@ -212,6 +212,10 @@
             <name>Maven Central</name>
             <url>https://repo.maven.apache.org/maven2/</url>
         </repository>
+        <repository>
+            <id>repo</id>
+            <url>https://maven.scijava.org/content/repositories/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -224,8 +228,7 @@
         <dependency>
             <groupId>me.carleslc.Simple-YAML</groupId>
             <artifactId>Simple-Yaml</artifactId>
-            <version>1.8.1</version>
-            <scope>compile</scope>
+            <version>1.8.4</version>
         </dependency>
         <dependency>
             <groupId>com.madgag</groupId>

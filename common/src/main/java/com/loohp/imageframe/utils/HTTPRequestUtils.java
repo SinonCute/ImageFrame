@@ -20,6 +20,7 @@
 
 package com.loohp.imageframe.utils;
 
+import com.loohp.imageframe.ImageFrame;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -60,6 +61,9 @@ public class HTTPRequestUtils {
     }
 
     public static InputStream getInputStream(String link) throws IOException {
+        if (!ImageFrame.isURLAllowed(link)) {
+            throw new IOException("URL is not allowed");
+        }
         URLConnection connection = new URL(link).openConnection();
         connection.setUseCaches(false);
         connection.setDefaultUseCaches(false);
@@ -70,6 +74,9 @@ public class HTTPRequestUtils {
     }
 
     public static byte[] download(String link) throws IOException {
+        if (!ImageFrame.isURLAllowed(link)) {
+            throw new IOException("URL is not allowed");
+        }
         try (InputStream is = getInputStream(link)) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] byteChunk = new byte[4096];
@@ -82,6 +89,9 @@ public class HTTPRequestUtils {
     }
 
     public static long getContentSize(String link) {
+        if (!ImageFrame.isURLAllowed(link)) {
+            return -1;
+        }
         try {
             URLConnection connection = new URL(link).openConnection();
             connection.setUseCaches(false);
@@ -99,6 +109,9 @@ public class HTTPRequestUtils {
     }
 
     public static String getContentType(String link) {
+        if (!ImageFrame.isURLAllowed(link)) {
+            return "";
+        }
         try {
             URLConnection connection = new URL(link).openConnection();
             connection.setUseCaches(false);
